@@ -1,0 +1,6 @@
+-Mai este necesara in metoda enq plasarea size.getAndIncrement() in cadrul sectiunii protejate de enqLock? Argumentati
+
+Nu este necesara, deoarece singura data cand avem nevoie de valoarea exacta a variabilei `size` este
+in while-ul care verifica daca am ajuns la capacitatea maxima a cozii, care este securizata de acelasi
+lock unde se face size.getAndIncrement(). Ceea ce inseamna ca alt thread nu poate executa while-ul 
+respectiv pana nu se termina si incrementarea.

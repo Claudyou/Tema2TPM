@@ -1,0 +1,2 @@
+Optimizat: 988900 nanosecunde
+Neoptimizat: 25669100 nanosecunde

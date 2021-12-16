@@ -1,0 +1,14 @@
+Optimizat: 988900 nanosecunde
+Neoptimizat: 25669100 nanosecunde
+
+Am folosit AtomicInteger pentru a mentine numarul versiunii curente. 
+Pentru add/remove:
+	Pana gasim cele doua noduri intre care trebuie inserata valoarea, salvam versiunea curenta pentru a avea ultima versiune atunci cand avem nodurile cautate.
+	Dupa ce punem lock-ul pe cele 2 noduri, pentru optimizarea validarii, verificam daca s-a modificat versiunea, pana la punerea lock-urilor. Daca e modificata, 
+	atunci apelam functia de validare pentru a ne asigura ca putem efectua operatia, iar apoi incrementam versiunea in punctul de liniarizare, chiar inante de 
+	a modifica lista. Daca versiunea nu e modificata, trecem direct la incrementarea versiunii si modificarea listei.
+Pentru contains:
+	Pana gasim cele doua noduri intre care trebuie inserata valoarea, salvam versiunea curenta pentru a avea ultima versiune atunci cand avem nodurile cautate.
+	Dupa ce punem lock-ul pe cele 2 noduri, pentru optimizarea validarii, verificam daca s-a modificat versiunea, pana la punerea lock-urilor. Daca e modificata, 
+	atunci apelam functia de validare pentru a ne asigura ca nodul inca mai este in lista. Daca versiunea nu e schimbata, verificam direct existenta nodului si o
+	returnam.

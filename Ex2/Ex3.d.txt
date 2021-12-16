@@ -1,0 +1,10 @@
+-Se da pseudocodul de mai jos pentru o coada lock-based de aceasta data in varianta nelimitata. Este necesar ca verificarea pentru 
+coada nevida din metoda deq() sa fie neaparat plasata in sectiunea protejata prin lock sau ar putea fi plasata si in afara sectiunii
+ protejate prin lock? Argumentati.
+
+
+
+	- Este necesar ca verificarea pentru coada nevida din metoda deq() sa fie neaparat plasata in sectiunea protejata prin lock
+	  deoarece daca s-ar verifica inainte, ar putea trece de verificare mai multe thread-uri decat numarul de elemente din coada
+	  ceea ce inseamna ca ultimele thread-uri nu vor mai avea elemente de citit din coada si ar fi trebuit incadrate la exceptie.
+

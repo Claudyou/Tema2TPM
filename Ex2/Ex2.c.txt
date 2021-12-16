@@ -1,0 +1,13 @@
+- Va mai functiona in acest caz algoritmul pentru coada corect (ignorand scaderile in performanta)?
+
+
+	Da, deoarece avem cate un lacat pentru ficare operatie, enq resprectiv deq, ignorand faptul ca la linia 27 avem return inainte de unlock.
+	Se respecta caracterul FIFO al cozii.
+
+
+- Ce s-ar intampla daca s-ar amesteca cele doua abordari in modul urmator?:
+
+	Nu merge bine daca avem mai multe threaduri de deq decat enq pentru ca raman blocate in `while (size.get() == 0)` pentru ca nu mai are cine baga elemente in coada.
+
+	Singura problema care poate aparea din cauza combinarii celor 2 metode, este ca in deq, deqLock poate ramane blocat in  `while (size.get() == 0)` 
+	iar daca un alt thread vrea sa notifice cu `notEmptyCondition.signalAll();` nu poate lua lock-ul deqLock si suntem intr-o stare blocanta.

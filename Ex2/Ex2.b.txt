@@ -1,0 +1,11 @@
+Va mai functiona in acest caz metoda enq corect pastrand caracterul FIFO al cozii? Argumentati.
+Nu va mai functiona corect. Avem urmatorul caz:
+- 1: avem un head, un tail si un nod intre ele
+- 2: thread A -> face enq, pune lacat pe head.nodelock si creeaza un nou nod
+- 3: thread B -> face deq, si modifica head-ul
+- 4: thread C -> face enq, pune lacat pe noul head.nodelock( deci poate intra si el in enq desi thread A inca este in enq), creeaza un nod nou si modifica tailul
+- 5: thread A -> modifica tailul, (cel creat de threadul C)
+=> ordinea de eliminare nu mai este cea introdusa deoarece trebuia sa avem ordinea: (valoare tail vechi)-> (valoare thread A) -> (valoare thread C) dar avem 
+										    (valoare tail vechi)-> (valoare thread C) -> (valoare thread A)  !FIFO
+
+Am facut si un desen

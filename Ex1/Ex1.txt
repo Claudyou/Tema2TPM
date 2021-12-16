@@ -1,0 +1,5 @@
+
+a)	`pred.next = node;`- linia 63   deoarece dupa executia ei, noul nod este integrat complet in lista.
+b)	` return false;` - linia 59	deoarece dupa executia ei, functia se termina fara a fi modificat lista
+c)	`pred.next = current.next;` - linia 90	deoarece dupa executia ei, in lista nu mai putem ajunge la elementul curent pentru ca pred "pointeaza" direct la succesorul nodului curent
+d)	`return false;` - linia 93 	deoarece dupa executia ei, functia se termina fara a fi sters vreun element din lista
